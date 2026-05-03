@@ -1,16 +1,16 @@
-### Portfolio
+# Portfolio
 
 ## env:
 
-# Hardware: TX2024 Laptop
+### Hardware: TX2024 Laptop
     CPU: AMD HX370 + GPU: 4060 laptop
 
-# OS: Windows 11
+### OS: Windows 11
 
-# IDE: Rider
+### IDE: Rider
 
-# Basic Config:
-Github:
+### Basic Config:
+#### Github:
 Rider本地新建C++项目
 
 git branch -M main
