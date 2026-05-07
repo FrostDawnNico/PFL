@@ -36,12 +36,30 @@
 //     return 0;
 // }
 
+// 修改当前c++版本
+//
+// 如果是cmake项目
+// CMakeLists.txt 文件
+// cmake_minimum_required(VERSION 3.1)
+// project(PFL_01)
+// # 设置 C++ 标准为 C++20
+// set(CMAKE_CXX_STANDARD 20)
+// set(CMAKE_CXX_STANDARD_REQUIRED ON)
+//
+// 如果是Visual Studio 项目
+// 右键点击您的项目（例如 PFL_01），然后选择“属性”。
+// 在“属性页”对话框中，导航到“配置属性” -> “C/C++” -> “语言”。
+// 在“C++ 语言标准”下拉菜单中，选择 ISO C++20 Standard (/std:c++20)。
+// (这会在vcxproj的$(Configuration)|$(Platform)的<ClCompile>下增加<LanguageStandard>stdcpp20</LanguageStandard>
+//
+// 经测试以上两个方法均有效
+
 // 判断当前机器字节序（高频）
 //✅ 更安全的 C++20 写法：// 目前测试17不行
-#include <bit> // 经测试20里面必须有，23里面可以省略
-
-int main()
-{
-    bool b = std::endian::native == std::endian::little; 
-    std::cout<<b; // 1为小端序，0为大端序
-}
+// #include <bit> // 经测试20里面必须有，23里面可以省略
+//
+// int main()
+// {
+//     bool b = std::endian::native == std::endian::little; 
+//     std::cout<<b; // 1为小端序，0为大端序
+// }
