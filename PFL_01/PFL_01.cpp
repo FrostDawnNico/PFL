@@ -63,3 +63,35 @@
 //     bool b = std::endian::native == std::endian::little; 
 //     std::cout<<b; // 1为小端序，0为大端序
 // }
+
+//面向对象编程：实现一个 String 类（经典压轴题）
+// class MyString {
+// private:
+//     char* data;
+// public:
+//     // 1. 构造函数
+//     MyString(const char* str = nullptr);
+//     
+//     // 2. 析构函数 (Rule of Three)
+//     ~MyString();
+//     
+//     // 3. 拷贝构造函数
+//     MyString(const MyString& other);
+//     
+//     // 4. 拷贝赋值运算符
+//     MyString& operator=(const MyString& other);
+//     
+//     // C++11 新增 (Rule of Five)
+//     // 5. 移动构造函数
+//     MyString(MyString&& other) noexcept;
+//     // 6. 移动赋值运算符
+//     MyString& operator=(MyString&& other) noexcept;
+// };
+// 考察逻辑：
+// 深拷贝 vs 浅拷贝：如果不写拷贝构造，默认的浅拷贝会导致两个指针指向同一块内存，析构时 double free。
+// 自赋值检查：if (this == &other) return *this;必须处理。
+// 异常安全：在赋值运算符中，先分配新内存，再释放旧内存（Copy-and-Swap 惯用法）。
+
+
+
+

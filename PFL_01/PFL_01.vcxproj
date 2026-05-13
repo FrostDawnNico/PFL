@@ -158,6 +158,9 @@
   <ItemGroup>
     <ClCompile Include="PFL_01.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="mindstorm.md" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
