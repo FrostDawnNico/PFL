@@ -157,6 +157,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="PFL_01.cpp" />
+    <ClCompile Include="ThreadSecure.cpp" />
+    <ClCompile Include="ThreadSecure.h" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="mindstorm.md" />
