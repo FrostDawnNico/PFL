@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.1)
-project(PFL_01)
+project(Cpp0EnvDetect)
 
 # 设置 C++ 标准为 C++20
 set(CMAKE_CXX_STANDARD 20)
@@ -21,4 +21,4 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #endif()
 
 # 添加可执行文件或其他目标
-add_executable(PFL_01 PFL_01.cpp)
+add_executable(Cpp0EnvDetect Cpp0EnvDetect.cpp)

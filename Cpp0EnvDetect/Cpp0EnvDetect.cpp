@@ -1,0 +1,86 @@
+// C++常见的面试题类型
+
+// 查看当前c++版本
+#include <iostream>
+#include <conio.h>  // 用于Windows下的_getch()
+
+int main() {
+
+    //std::cout << "C++ version: " << __cplusplus << std::endl; 
+    //输出的__cplusplus宏 总是199711。
+    //Visual Studio官方说明 链接：https://learn.microsoft.com/zh-cn/cpp/build/reference/zc-cplusplus?view=msvc-170&viewFallbackFrom=vs-2022
+    //历史兼容性的原因，Visual C++ (MSVC) 编译器不管选择了哪个 C++ 语言标准（如 C++14, C++17），__cplusplus 宏默认都只报告 199711L（代表 C++98/03），_MSVC_LANG 这个是MSVC特有的宏，可以正确输出C++版本
+
+    //方法一 恢复__cplusplus宏
+    //在 Visual Studio 中设置此编译器选项，打开项目的“属性页” 对话框 。 有关详细信息，请参阅在 Visual Studio 中设置 C++ 编译器和生成属性。
+    //选择“配置属性”>“C/C++”>“命令行 ”属性页。将 /Zc:__cplusplus 或 /Zc:__cplusplus- 添加到“附加选项:”窗格中。
+
+    //方法二 使用_MSVC_LANG宏
+    std::cout << "C++ version:"<< _MSVC_LANG << std::endl;
+    // 输入回车退出
+    // getchar();
+
+    std::cout << "Press any key to exit..." << std::endl;
+    _getch();  // Windows下暂停程序直到按键被按下
+
+    return 0;
+}
+
+// 修改当前c++版本
+
+// 如果是cmake项目
+// CMakeLists.txt 文件
+// cmake_minimum_required(VERSION 3.1)
+// project(PFL_01)
+// # 设置 C++ 标准为 C++20
+// set(CMAKE_CXX_STANDARD 20)
+// set(CMAKE_CXX_STANDARD_REQUIRED ON)
+//
+// 如果是Visual Studio 项目
+// 右键点击您的项目（例如 PFL_01），然后选择“属性”。
+// 在“属性页”对话框中，导航到“配置属性” -> “C/C++” -> “语言”。
+// 在“C++ 语言标准”下拉菜单中，选择 ISO C++20 Standard (/std:c++20)。
+// (这会在vcxproj的$(Configuration)|$(Platform)的<ClCompile>下增加<LanguageStandard>stdcpp20</LanguageStandard>
+//
+// 经测试以上两个方法均有效
+
+// 判断当前机器字节序（高频）
+// ✅ 更安全的 C++20 写法：// 目前测试17不行
+#include <bit> // 经测试20里面必须有，23里面可以省略
+
+// int main()
+// {
+// bool b = std::endian::native == std::endian::little; 
+// std::cout<<b; // 1为小端序，0为大端序
+// }
+
+// 面向对象编程：实现一个 String 类（经典压轴题）
+class MyString {
+private:
+    char* data;
+public:
+    // 1. 构造函数
+    MyString(const char* str = nullptr);
+
+    // 2. 析构函数 (Rule of Three)
+    ~MyString();
+
+    // 3. 拷贝构造函数
+    MyString(const MyString& other);
+
+    // 4. 拷贝赋值运算符
+    MyString& operator=(const MyString& other);
+
+    // C++11 新增 (Rule of Five)
+    // 5. 移动构造函数
+    MyString(MyString&& other) noexcept;
+    // 6. 移动赋值运算符
+    MyString& operator=(MyString&& other) noexcept;
+};
+// 考察逻辑：
+// 深拷贝 vs 浅拷贝：如果不写拷贝构造，默认的浅拷贝会导致两个指针指向同一块内存，析构时 double free。
+// 自赋值检查：if (this == &other) return *this;必须处理。
+// 异常安全：在赋值运算符中，先分配新内存，再释放旧内存（Copy-and-Swap 惯用法）。
+
+
+
