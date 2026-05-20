@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{81867102-429E-470C-92C7-C8A52CBAC82C}</ProjectGuid>
+    <ProjectGuid>{B284F8F0-62C1-4845-8AAA-4F094FBE9CF9}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>PFL_01</RootNamespace>
+    <RootNamespace>PFL0Base</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -94,7 +94,6 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -110,7 +109,6 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -156,13 +154,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="PFL_01.cpp" />
-    <ClCompile Include="ThreadSecure.cpp" />
-    <ClCompile Include="ThreadSecure.h" />
-    <ClCompile Include="ThreadSecureAdd.cpp" />
+    <ClCompile Include="PFL0Base.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="mindstorm.md" />
+    <Content Include="MindStorm.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

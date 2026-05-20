@@ -44,7 +44,7 @@
 // }
 
 // 加入计数器验证唯一性
-#include "ThreadSecure.h"
+#include "Cpp1ThreadSecure.h"
 // 静态成员初始化
 std::atomic<int> MeyersSingleton::totalCalls_{0};
 std::atomic<int> DCLSingleton::totalCalls_{0};
