@@ -80,11 +80,11 @@
     <CudaCompile Include="kernel.cu" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="add.cu" />
-    <ClCompile Include="matmul.cu" />
-    <ClCompile Include="matmul_any_size.cu" />
-    <ClCompile Include="matmul_double_buffer.cu" />
-    <ClCompile Include="matmul_shared_memory.cu" />
+    <CudaCompile Include="add.cu" />
+    <CudaCompile Include="matmul.cu" />
+    <CudaCompile Include="matmul_any_size.cu" />
+    <CudaCompile Include="matmul_double_buffer.cu" />
+    <CudaCompile Include="matmul_shared_memory.cu" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="README.md" />
