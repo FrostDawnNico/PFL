@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{70C534E7-D1E4-4DFE-BEAD-5D3BBA16F118}</ProjectGuid>
+    <ProjectGuid>{528963E0-D35C-4261-A98C-81EE1CB03F81}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Cpp3_1Lambda</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
