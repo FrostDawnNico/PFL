@@ -65,6 +65,11 @@ void testSingletonUniqueness(const char* name, int numThreads = 5) {
         } else {
             SingletonType::instance().incrementAndPrint(id);
         }
+        //if constexpr (编译期布尔表达式) { //C++17 引入的编译期条件分支语句
+        // // 编译期保留
+        // } else {
+        // // 编译期丢弃
+        // }
         
         completedThreads.fetch_add(1, std::memory_order_relaxed);
     };

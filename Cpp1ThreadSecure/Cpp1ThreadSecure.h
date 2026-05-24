@@ -134,12 +134,13 @@
 class MeyersSingleton {
 public:
     static MeyersSingleton& instance() {
-        static MeyersSingleton instance;
+        static MeyersSingleton instance; // C++11 线程安全
         return instance;
     }
 
     void incrementAndPrint(int threadId) {
-        int oldCount = counter_.fetch_add(1, std::memory_order_relaxed);
+        int oldCount = counter_.fetch_add(1, std::memory_order_relaxed); //原子递增操作，用于线程安全地增加计数器
+        // memory_order_relaxed 只关心计数，不关心顺序 ✅
         std::cout << "[Meyers] Thread " << threadId 
                   << ", Instance: " << this 
                   << ", Counter: " << oldCount + 1 
@@ -150,12 +151,7 @@ public:
     int getCounter() const {
         return counter_.load(std::memory_order_relaxed);
     }
-
-    ~MeyersSingleton() {
-        std::cout << "MeyersSingleton destroyed. Final counter: " 
-                  << counter_.load() << std::endl;
-    }
-
+    
     MeyersSingleton(const MeyersSingleton&) = delete;
     MeyersSingleton& operator=(const MeyersSingleton&) = delete;
 
@@ -163,12 +159,16 @@ private:
     MeyersSingleton() : counter_(0) {
         std::cout << "MeyersSingleton constructed at " << this << std::endl;
     }
-
+    
+    ~MeyersSingleton() {
+        std::cout << "MeyersSingleton destroyed. Final counter: " 
+                  << counter_.load() << std::endl;
+    }
     std::atomic<int> counter_;
     static std::atomic<int> totalCalls_;
 };
 
-// ================== DCL Singleton（使用原子操作）==================
+// ================== DCL Singleton（双重检查锁定，使用原子操作）==================
 class DCLSingleton {
 public:
     static DCLSingleton* instance() {
