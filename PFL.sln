@@ -17,6 +17,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Cpp3Lambda", "Cpp3Lambda\Cp
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ADS0Complexity", "ADS0Complexity\ADS0Complexity.vcxproj", "{3785B263-2AB5-46FC-9094-C3395E4C82D0}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ADS1DateStructure", "ADS1DateStructure\ADS1DateStructure.vcxproj", "{B8E6B649-9CE2-4D7F-9D60-7C03598AAC14}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CG2PBR", "CG2PBR\CG2PBR.vcxproj", "{8CADBF37-D914-41DB-9F8B-55F88FFB4449}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -81,6 +85,22 @@ Global
 		{3785B263-2AB5-46FC-9094-C3395E4C82D0}.Release|Win32.Build.0 = Release|Win32
 		{3785B263-2AB5-46FC-9094-C3395E4C82D0}.Release|x64.ActiveCfg = Release|x64
 		{3785B263-2AB5-46FC-9094-C3395E4C82D0}.Release|x64.Build.0 = Release|x64
+		{B8E6B649-9CE2-4D7F-9D60-7C03598AAC14}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B8E6B649-9CE2-4D7F-9D60-7C03598AAC14}.Debug|Win32.Build.0 = Debug|Win32
+		{B8E6B649-9CE2-4D7F-9D60-7C03598AAC14}.Debug|x64.ActiveCfg = Debug|x64
+		{B8E6B649-9CE2-4D7F-9D60-7C03598AAC14}.Debug|x64.Build.0 = Debug|x64
+		{B8E6B649-9CE2-4D7F-9D60-7C03598AAC14}.Release|Win32.ActiveCfg = Release|Win32
+		{B8E6B649-9CE2-4D7F-9D60-7C03598AAC14}.Release|Win32.Build.0 = Release|Win32
+		{B8E6B649-9CE2-4D7F-9D60-7C03598AAC14}.Release|x64.ActiveCfg = Release|x64
+		{B8E6B649-9CE2-4D7F-9D60-7C03598AAC14}.Release|x64.Build.0 = Release|x64
+		{8CADBF37-D914-41DB-9F8B-55F88FFB4449}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8CADBF37-D914-41DB-9F8B-55F88FFB4449}.Debug|Win32.Build.0 = Debug|Win32
+		{8CADBF37-D914-41DB-9F8B-55F88FFB4449}.Debug|x64.ActiveCfg = Debug|x64
+		{8CADBF37-D914-41DB-9F8B-55F88FFB4449}.Debug|x64.Build.0 = Debug|x64
+		{8CADBF37-D914-41DB-9F8B-55F88FFB4449}.Release|Win32.ActiveCfg = Release|Win32
+		{8CADBF37-D914-41DB-9F8B-55F88FFB4449}.Release|Win32.Build.0 = Release|Win32
+		{8CADBF37-D914-41DB-9F8B-55F88FFB4449}.Release|x64.ActiveCfg = Release|x64
+		{8CADBF37-D914-41DB-9F8B-55F88FFB4449}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
