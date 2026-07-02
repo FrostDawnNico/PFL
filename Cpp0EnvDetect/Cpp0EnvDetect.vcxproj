@@ -156,6 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Cpp0EnvDetect.cpp" />
+    <ClCompile Include="GrammarBase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="CMakeLists.txt" />
