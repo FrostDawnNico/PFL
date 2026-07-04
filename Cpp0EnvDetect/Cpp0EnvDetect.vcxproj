@@ -156,7 +156,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Cpp0EnvDetect.cpp" />
+    <ClCompile Include="GBKtest.cpp" />
     <ClCompile Include="GrammarBase.cpp" />
+    <ClCompile Include="UTF-16.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="CMakeLists.txt" />
