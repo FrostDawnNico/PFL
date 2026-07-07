@@ -21,7 +21,7 @@ using namespace std;
 //
 // 方案1：
 // 在.codex目录（windows对应目录C:\Users\Administrator\.codex）新建一个.env文件内容为：
-//
+//（冒号后是HTTP端口，如果开了代理一定要切换到代理的实际端口）
 // HTTP_PROXY="http://127.0.0.1:10809"
 // HTTPS_PROXY="http://127.0.0.1:10809"
 // ALL_PROXY="socks5://127.0.0.1:10808"
@@ -79,3 +79,46 @@ using namespace std;
 //     return 0;
 // }
 
+// 字节对齐
+
+//[c][pad*3][i*4][s*2][pad*2]
+//sizeof = 12
+struct X
+{
+    char c;
+    int i;
+    short s;
+};
+
+//[i*4][s*2][c][pad]
+//sizeof = 8
+struct Y
+{
+    int i;
+    short s;
+    char c;
+};
+
+// C++11后 显式对齐
+struct alignas(16) S
+{
+    //显式指定对齐值（只能 ≥ 自然对齐），S的地址是 16 的倍数
+    int x;
+};
+
+
+int main()
+{
+    X x;
+    Y y;
+    S s;
+    // 占用空间的大小
+    cout << sizeof(x) << endl; // 12
+    cout << sizeof(y) << endl; // 8：从大到小写，更加高效
+    cout << sizeof(s) << endl;
+    // 对齐要求
+    cout << alignof(X) << endl;
+    cout << alignof(Y) << endl;
+    cout << alignof(S) << endl;
+    return 0;
+}
