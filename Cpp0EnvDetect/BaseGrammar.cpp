@@ -99,6 +99,19 @@ struct Y
     char c;
 };
 
+// 空类与空基类优化（EBO）
+struct Empty {};
+struct A : Empty {
+    int x;
+};
+
+struct StillEmpty
+{
+public:
+    void func() {}          // 成员函数不影响大小
+    static int static_var;  // 静态成员不影响大小
+    using Type = int;       // 类型别名不影响大小
+};
 // C++11后 显式对齐
 struct alignas(16) S
 {
@@ -112,13 +125,22 @@ int main()
     X x;
     Y y;
     S s;
+    Empty e;
+    A a;
     // 占用空间的大小
     cout << sizeof(x) << endl; // 12
     cout << sizeof(y) << endl; // 8：从大到小写，更加高效
     cout << sizeof(s) << endl;
+    cout << sizeof(e) << endl; // 1：
+    //确保对象具有唯一的地址（对象唯一性）。C++ 要求每个独立的对象都必须有一个独一无二的地址。
+    //如果 sizeof(Empty)是 0，那么 arr将不占用任何空间，arr[0]和 arr[1]的地址将相同，这违反了数组元素必须连续存储且地址不同的基本原则。大小为 1 保证了数组中的每个元素都有正确的偏移量（&arr[i] == &arr[0] + i * sizeof(Empty)）。
+    cout << sizeof(a) << endl; // 4：空基类优化EBO
+    cout << sizeof(StillEmpty) << endl;
     // 对齐要求
     cout << alignof(X) << endl;
     cout << alignof(Y) << endl;
     cout << alignof(S) << endl;
+    cout << alignof(Empty) << endl;
+    cout << alignof(A) << endl;
     return 0;
 }
