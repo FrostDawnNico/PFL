@@ -79,68 +79,113 @@ using namespace std;
 //     return 0;
 // }
 
-// 字节对齐
+// // 字节对齐
+//
+// //[c][pad*3][i*4][s*2][pad*2]
+// //sizeof = 12
+// struct X
+// {
+//     char c;
+//     int i;
+//     short s;
+// };
+//
+// //[i*4][s*2][c][pad]
+// //sizeof = 8
+// struct Y
+// {
+//     int i;
+//     short s;
+//     char c;
+// };
+//
+// // 空类与空基类优化（EBO）
+// struct Empty {};
+// struct A : Empty {
+//     int x;
+// };
+//
+// // 特殊情况：带成员的空类
+// struct StillEmpty
+// {
+// public:
+//     void func() {}          // 成员函数不影响大小
+//     static int static_var;  // 静态成员不影响大小
+//     using Type = int;       // 类型别名不影响大小
+// };
+// // C++11后 显式对齐
+// struct alignas(16) S
+// {
+//     //显式指定对齐值（只能 ≥ 自然对齐），S的地址是 16 的倍数
+//     int x;
+// };
+//
+//
+// int main()
+// {
+//     X x{'m', -2233, 5566};
+//     Y y;
+//     S s;
+//     Empty e;
+//     A a;
+//     // 占用空间的大小
+//     cout << sizeof(x) << endl; // 12
+//     cout << sizeof(y) << endl; // 8：从大到小写，更加高效
+//     cout << sizeof(s) << endl;
+//     cout << sizeof(e) << endl; // 1：
+//     // 确保对象具有唯一的地址（对象唯一性）。C++ 要求每个独立的对象都必须有一个独一无二的地址。
+//     // 如果 sizeof(Empty)是 0，那么 arr将不占用任何空间，arr[0]和 arr[1]的地址将相同，这违反了数组元素必须连续存储且地址不同的基本原则。大小为 1 保证了数组中的每个元素都有正确的偏移量（&arr[i] == &arr[0] + i * sizeof(Empty)）。
+//     cout << sizeof(a) << endl; // 4：空基类优化EBO
+//     cout << sizeof(StillEmpty) << endl; // 1
+//     // 对齐要求
+//     cout << alignof(X) << endl;
+//     cout << alignof(Y) << endl;
+//     cout << alignof(S) << endl;
+//     cout << alignof(Empty) << endl;
+//     cout << alignof(A) << endl;
+//     cout << alignof(StillEmpty) << endl;
+//     return 0;
+// }
 
-//[c][pad*3][i*4][s*2][pad*2]
-//sizeof = 12
-struct X
-{
-    char c;
-    int i;
-    short s;
-};
+// 大小端序判断
 
-//[i*4][s*2][c][pad]
-//sizeof = 8
-struct Y
-{
-    int i;
-    short s;
-    char c;
-};
+// // 最推荐：C++20 std::endian（标准、安全、可读）
+// // C++20 在 <bit>头文件中引入了 std::endian，这是最规范、无 UB、可读性最好的方式。
+// #include <bit>
+// int main() {
+//     if constexpr (std::endian::native == std::endian::little) {
+//         std::cout << "Little Endian\n";
+//     } else if constexpr (std::endian::native == std::endian::big) {
+//         std::cout << "Big Endian\n";
+//     } else {
+//         std::cout << "Mixed Endian\n";
+//     }
+// }
 
-// 空类与空基类优化（EBO）
-struct Empty {};
-struct A : Empty {
-    int x;
-};
+// // 联合体（Union）法 ✅（C++ 合法）
+// // 利用联合体共享内存的特性，是最常见、安全的底层写法。
+// bool is_little_endian() {
+//     union {
+//         uint16_t i;
+//         uint8_t c[2];
+//     } u{0x0001};
+//
+//     return u.c[0] == 0x01;
+// }
+//
+// int main() {
+//     std::cout << (is_little_endian() ? "Little" : "Big") << " Endian\n";
+// }
+// //0x0001在内存中：小端：[0x01][0x00]大端：[0x00][0x01]读取 c[0]即可判断
 
-struct StillEmpty
-{
-public:
-    void func() {}          // 成员函数不影响大小
-    static int static_var;  // 静态成员不影响大小
-    using Type = int;       // 类型别名不影响大小
-};
-// C++11后 显式对齐
-struct alignas(16) S
-{
-    //显式指定对齐值（只能 ≥ 自然对齐），S的地址是 16 的倍数
-    int x;
-};
-
-
-int main()
-{
-    X x;
-    Y y;
-    S s;
-    Empty e;
-    A a;
-    // 占用空间的大小
-    cout << sizeof(x) << endl; // 12
-    cout << sizeof(y) << endl; // 8：从大到小写，更加高效
-    cout << sizeof(s) << endl;
-    cout << sizeof(e) << endl; // 1：
-    //确保对象具有唯一的地址（对象唯一性）。C++ 要求每个独立的对象都必须有一个独一无二的地址。
-    //如果 sizeof(Empty)是 0，那么 arr将不占用任何空间，arr[0]和 arr[1]的地址将相同，这违反了数组元素必须连续存储且地址不同的基本原则。大小为 1 保证了数组中的每个元素都有正确的偏移量（&arr[i] == &arr[0] + i * sizeof(Empty)）。
-    cout << sizeof(a) << endl; // 4：空基类优化EBO
-    cout << sizeof(StillEmpty) << endl;
-    // 对齐要求
-    cout << alignof(X) << endl;
-    cout << alignof(Y) << endl;
-    cout << alignof(S) << endl;
-    cout << alignof(Empty) << endl;
-    cout << alignof(A) << endl;
-    return 0;
-}
+// // 指针强制转换⚠️
+// // 严格别名规则（Strict Aliasing Rule）违反
+// // 属于未定义行为（UB）
+// // 编译器可能优化出错
+// bool is_little_endian() {
+//     int num = 1;
+//     return *(char*)&num == 1; //转成 char*取首字节
+// }
+// int main() {
+//     cout << is_little_endian() << endl;
+// }
