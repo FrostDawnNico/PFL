@@ -189,3 +189,43 @@ using namespace std;
 // int main() {
 //     cout << is_little_endian() << endl;
 // }
+
+// // explicit
+// class MyClass
+// {
+// public:
+//     explicit MyClass(int size)
+//     {
+//     }; // explicit
+//     MyClass(const char* p)
+//     {
+//     }; // 非 explicit
+// };
+//
+// int main()
+// {
+//     //MyClass s1=10; // “初始化”: 无法从“int”转换为“MyString1”
+//     MyClass s2(10);
+//     MyClass s3 = "hello";
+// }
+
+// class 默认 private 继承
+class Base {
+public:
+    int x;
+};
+    
+class Derived1 : Base {   // ❌ 默认 private 继承
+};
+class Derived2 : public Base {
+};
+
+int main()
+{
+    Derived1 d1;
+    Derived2 d2;
+    // d1.x = 10;   // ❌ 编译错误：x 不可访问
+    // cout <<d1.x<<endl;   // ❌ 编译错误：x 不可访问
+    d2.x = 10;
+    cout <<d2.x<<endl;
+}
